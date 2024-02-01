@@ -1,5 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import showModal from "discourse/lib/show-modal";
+import VideoModal from "../components/modal/video-upload";
 
 function initializeDiscourseVideoUpload(api) {
   if (settings.youtube_upload_enabled || settings.vimeo_upload_enabled) {
