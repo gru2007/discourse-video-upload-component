@@ -55,7 +55,11 @@ export default class VideoModal extends Component {
     updateProgress(data, component) {
         const progress = Math.floor(data.loaded / data.total * 100)
         this.uploadProgress = progress;
-        console.log(data);
+        if (data.loaded == data.total) {
+            this.uploadProgress = 0
+            this.isUploading = false
+            this.isProcessing = true
+        }
     }
 
     @action
@@ -228,7 +232,7 @@ export default class VideoModal extends Component {
             uploadInst.transcodeStatus(function (status) {
                 if (status === 'in_progress') return ;
                 clearInterval(interval);
-                this.isProcessing = false;
+                component.isProcessing = false;
                 $("#vimeo-upload-btn").removeAttr('disabled');
                 if (status === 'error') this.processingError = true;
                 else if (status === 'complete') {
@@ -237,8 +241,8 @@ export default class VideoModal extends Component {
                 }
             }, function (error) {
                 clearInterval(interval);
-                this.isProcessing = false
-                this.processingError = true
+                component.isProcessing = false
+                component.processingError = true
             })
         }, STATUS_POLLING_INTERVAL_MILLIS);
     }
