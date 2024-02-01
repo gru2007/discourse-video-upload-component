@@ -214,7 +214,7 @@ export default class VideoModal extends Component {
                         case 'processed':
                             this.isProcessing = false;
                             composer.model.appEvents.trigger("composer:insert-block", '\nhttps://youtu.be/' + component.ytVideoId + '\n');
-                            component.send('closeModal');
+                            component.args.closeModal();
                             break;
                         // All other statuses indicate a permanent transcoding failure.
                         default:
@@ -237,7 +237,7 @@ export default class VideoModal extends Component {
                 if (status === 'error') this.processingError = true;
                 else if (status === 'complete') {
                     composer.model.appEvents.trigger("composer:insert-block", '\n' + uploadUrl + '\n');
-                    component.send('closeModal');
+                    component.args.closeModal();
                 }
             }, function (error) {
                 clearInterval(interval);
