@@ -77,9 +77,16 @@ export default class VideoModal extends Component {
 
         let uploadUrl = '';
 
+        if (file[0].size < 26214400) {
+            console.error('<strong>Error</strong>: ' + "Ваш файл больше 25 мегабайт", 'danger')
+            this.uploadProgress = 0
+            this.isUploading = false
+            this.uploadError = "Ваш файл больше 25 мегабайт"
+        }
+
         const uploadInst = new VimeoUpload({
             file: file[0],
-            token: settings.vimeo_api_access_token,
+            token: settings.vimeo_api_access_token, // this looks like UNSECURE
             name: $("#video-title").val(),
             description: $("#video-description").val() + '\nот @' + this.attrs,
             view: settings.vimeo_default_view_privacy,
