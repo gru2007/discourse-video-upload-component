@@ -54,7 +54,7 @@ export default class VideoModal extends Component {
     @action
     updateProgress(data, component) {
         const progress = Math.floor(data.loaded / data.total * 100)
-        component.set('uploadProgress', progress);
+        this.uploadProgress = progress;
     }
 
     @action
@@ -207,14 +207,14 @@ export default class VideoModal extends Component {
                             setTimeout(component.youtubeUploadStatus.bind(this), STATUS_POLLING_INTERVAL_MILLIS);
                             break;
                         case 'processed':
-                            component.set('isProcessing', false);
+                            this.isProcessing = false;
                             composer.model.appEvents.trigger("composer:insert-block", '\nhttps://youtu.be/' + component.ytVideoId + '\n');
                             component.send('closeModal');
                             break;
                         // All other statuses indicate a permanent transcoding failure.
                         default:
-                            component.set('processingError', true);
-                            component.set('isProcessing', false);
+                            this.processingError = true;
+                            this.isProcessing = false;
                             break;
                     }
                 }
@@ -227,9 +227,9 @@ export default class VideoModal extends Component {
             uploadInst.transcodeStatus(function (status) {
                 if (status === 'in_progress') return ;
                 clearInterval(interval);
-                component.set('isProcessing', false);
+                this.isProcessing = false;
                 $("#vimeo-upload-btn").removeAttr('disabled');
-                if (status === 'error') component.set('processingError', true);
+                if (status === 'error') this.processingError = true;
                 else if (status === 'complete') {
                     composer.model.appEvents.trigger("composer:insert-block", '\n' + uploadUrl + '\n');
                     component.send('closeModal');
