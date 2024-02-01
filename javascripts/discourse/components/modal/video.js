@@ -15,7 +15,7 @@ export default class VideoModal extends Component {
     @tracked isProcessing = false
     @tracked defaultPrivacy = 'unlisted'
     @tracked vimeoEnabled = false
-    @tracked youtubeEnabled = false
+    @tracked youtubeEnabled = true
     @tracked uploadError = null
 
     init() {

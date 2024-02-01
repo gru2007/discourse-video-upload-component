@@ -1,4 +1,4 @@
-<DModal @closeModal={{@closeModal}} @title={{theme-prefix "upload.video"}} id="video-modal" class="video-modal">
+<DModal @closeModal={{@closeModal}} @title={{theme-i18n "upload.video"}} id="video-modal" class="video-modal">
     <:body>
         <script async defer src="https://apis.google.com/js/api.js" id="gapiScript"></script>
         <div class="video-details">
@@ -39,7 +39,7 @@
     <:footer>
         {{#if this.vimeoEnabled}}
             <DButton
-                @label={{theme-prefix 'upload.vimeo'}}
+                @label={{theme-i18n 'upload.vimeo'}}
                 @action={{this.vimeoUpload}}
                 @icon="fab-vimeo-v"
                 @id="vimeo-upload-btn"
