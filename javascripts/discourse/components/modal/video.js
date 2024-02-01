@@ -1,6 +1,11 @@
 import Component from "@glimmer/component";
 import { getOwner } from "discourse-common/lib/get-owner";
 import ModalFunctionality from "discourse/mixins/modal-functionality";
+import { tracked } from "@glimmer/tracking";
+import { action } from "@ember/object";
+import { inject as service } from "@ember/service";
+import discourseDebounce from "discourse-common/lib/debounce";
+import I18n from "I18n";
 
 const STATUS_POLLING_INTERVAL_MILLIS = 10000;
 
@@ -195,7 +200,7 @@ export default class VideoModal extends Component {
         });
         uploader.upload();
     }
-    
+
     youtubeUploadStatus() {
         const composer = getOwner(this).lookup("controller:composer");
         const component = this;
