@@ -40,7 +40,7 @@
         {{#if this.vimeoEnabled}}
             <DButton
                 @label={{theme-prefix 'upload.vimeo'}}
-                @action={{action "vimeoUpload"}}
+                @action={{this.vimeoUpload}}
                 @icon="fab-vimeo-v"
                 @id="vimeo-upload-btn"
             />
@@ -48,7 +48,7 @@
         {{#if this.youtubeEnabled}}
         <DButton
             @label={{theme-prefix 'upload.youtube'}}
-            @action={{action "youtubeUpload"}}
+            @action={{this.youtubeUpload}}
             @icon="fab-youtube"
             @id="youtube-upload-btn"
         />
