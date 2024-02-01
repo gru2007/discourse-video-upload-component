@@ -1,15 +1,12 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import showModal from "discourse/lib/show-modal";
-import VideoModal from "../components/modal/video-upload";
 
 function initializeDiscourseVideoUpload(api) {
-
-  const modal = api.container.lookup("service:modal");
   if (settings.youtube_upload_enabled || settings.vimeo_upload_enabled) {
     api.modifyClass("component:d-editor", {
       actions: {
         openVideoUploadModal() {
-          modal.show(VideoModal);
+          showModal("video-upload");
         }
       }
     });
