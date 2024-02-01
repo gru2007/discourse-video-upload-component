@@ -55,6 +55,7 @@ export default class VideoModal extends Component {
     updateProgress(data, component) {
         const progress = Math.floor(data.loaded / data.total * 100)
         this.uploadProgress = progress;
+        console.log(data);
     }
 
     @action
