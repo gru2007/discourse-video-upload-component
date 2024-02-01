@@ -77,6 +77,7 @@ export default class VideoModal extends Component {
             this.uploadProgress = 0
             this.isUploading = false
             this.uploadError = "Вы забыли приложить файл"
+            return
         }
 
         $("#vimeo-upload-btn").attr('disabled', 'disabled');
