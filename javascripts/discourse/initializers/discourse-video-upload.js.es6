@@ -1,6 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import showModal from "discourse/lib/show-modal";
-import VideoModal from "../components/modal/video.js";
+import VideoModal from "../components/modal/video";
 
 export default {
   name: "discourse-video-upload",
