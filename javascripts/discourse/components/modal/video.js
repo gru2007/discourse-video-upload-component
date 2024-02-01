@@ -79,17 +79,16 @@ export default class VideoModal extends Component {
             this.uploadError = "Вы забыли приложить файл"
             return
         }
-
-        $("#vimeo-upload-btn").attr('disabled', 'disabled');
-
-        let uploadUrl = '';
-
         if (file[0].size > 26214400) {
             console.error('<strong>Error</strong>: ' + "Ваш файл больше 25 мегабайт", 'danger')
             this.uploadProgress = 0
             this.isUploading = false
             this.uploadError = "Ваш файл больше 25 мегабайт"
         }
+
+        $("#vimeo-upload-btn").attr('disabled', 'disabled');
+
+        let uploadUrl = '';
 
         const uploadInst = new VimeoUpload({
             file: file[0],
