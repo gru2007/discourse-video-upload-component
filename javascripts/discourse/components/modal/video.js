@@ -81,7 +81,7 @@ export default class VideoModal extends Component {
             file: file[0],
             token: settings.vimeo_api_access_token,
             name: $("#video-title").val(),
-            description: $("#video-description").val() + '\nот @' + this.attrs.username,
+            description: $("#video-description").val() + '\nот @' + this.attrs,
             view: settings.vimeo_default_view_privacy,
             embed: settings.vimeo_default_embed_privacy,
             upgrade_to_1080: true,
