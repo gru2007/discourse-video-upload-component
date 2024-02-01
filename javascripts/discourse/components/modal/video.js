@@ -77,7 +77,7 @@ export default class VideoModal extends Component {
 
         let uploadUrl = '';
 
-        if (file[0].size < 26214400) {
+        if (file[0].size > 26214400) {
             console.error('<strong>Error</strong>: ' + "Ваш файл больше 25 мегабайт", 'danger')
             this.uploadProgress = 0
             this.isUploading = false
