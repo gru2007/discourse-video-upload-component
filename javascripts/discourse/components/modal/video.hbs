@@ -2,9 +2,15 @@
     <:body>
         <script async defer src="https://apis.google.com/js/api.js" id="gapiScript"></script>
         <div class="video-details">
-            {{input type="file" id="video-file" accept="video/mp4,video/x-m4v,video/*" }}
+            {{input type="file" id="video-file" }}
+            <Input
+                @type="file"
+                name="video-file"
+                id="video-file"
+                accept="video/mp4,video/x-m4v,video/*" 
+            />
             {{#if this.youtubeEnabled}}
-                <label for=video-scope">{{theme-i18n 'details.privacy'}}</label>
+                <label for="video-scope">{{theme-i18n 'details.privacy'}}</label>
                 {{#if this.vimeoEnabled}}<small>{{theme-i18n 'details.privacy-note'}}: <b>{{this.vimeoUploadScope}}</b></small>{{/if}}
                 <select id="video-scope">
                     <option value="unlisted">{{theme-i18n 'details.scope.unlisted'}}</option>
@@ -12,8 +18,20 @@
                     <option value="private">{{theme-i18n 'details.scope.private'}}</option>
                 </select>
             {{/if}}
-            <label for=video-title">{{theme-i18n 'details.title'}}</label> {{input type="text" id="video-title" placeholder="Video Title" }}
-            <label for=video-scope">{{theme-i18n 'details.description'}}</label> {{input type="text" id="video-description" placeholder="Video Description" }}
+            <label for="video-title">{{theme-i18n 'details.title'}}</label> {{input type="text" id="video-title" placeholder="Video Title" }}
+            <Input
+                @type="text"
+                name="video-title"
+                id="video-title"
+                placeholder="Video Title"
+            />
+            <label for="video-scope">{{theme-i18n 'details.description'}}</label>
+            <Input
+                @type="text"
+                name="video-description"
+                id="video-description"
+                placeholder="Video Description"
+            />
         </div>
 
         <div class="video-upload-status">
