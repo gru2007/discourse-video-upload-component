@@ -56,7 +56,7 @@
     <:footer>
         {{#if this.vimeoEnabled}}
             <DButton
-                @label={{theme-prefix 'upload.vimeo'}}
+                @label={{'upload.vimeo'}}
                 @action={{this.vimeoUpload}}
                 @icon="fab-vimeo-v"
                 @id="vimeo-upload-btn"
@@ -64,7 +64,7 @@
         {{/if}}
         {{#if this.youtubeEnabled}}
         <DButton
-            @label={{theme-prefix 'upload.youtube'}}
+            @label={{'upload.youtube'}}
             @action={{this.youtubeUpload}}
             @icon="fab-youtube"
             @id="youtube-upload-btn"
