@@ -1,13 +1,15 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import showModal from "discourse/lib/show-modal";
-import VideoModal from "../components/modal/video-upload";
 
 function initializeDiscourseVideoUpload(api) {
   if (settings.youtube_upload_enabled || settings.vimeo_upload_enabled) {
     api.modifyClass("component:d-editor", {
       actions: {
         openVideoUploadModal() {
-          showModal("video-upload");
+          openVideoUploadModal() {
+            const modal = api.container.lookup("service:modal");
+            modal.show(VideoModal);
+          }
         }
       }
     });
@@ -17,10 +19,7 @@ function initializeDiscourseVideoUpload(api) {
         id: 'video-upload',
         group: 'insertions',
         icon: 'video',
-        action: () => {
-          const modal = api.container.lookup("service:modal");
-          modal.show(VideoModal);
-        },
+        sendAction: () => tb.context.send('openVideoUploadModal'),
         title: themePrefix('upload.video')
       })
     });
