@@ -38,10 +38,20 @@
 
     <:footer>
         {{#if vimeoEnabled}}
-            {{d-button action=(action "vimeoUpload") id="vimeo-upload-btn" class="btn-primary" icon="fab-vimeo-v" label=(theme-prefix 'upload.vimeo')}}
+            <DButton
+                @label={{theme-prefix 'upload.vimeo'}}
+                @action={{action "vimeoUpload"}}
+                @icon="fab-vimeo-v"
+                @id="vimeo-upload-btn"
+            />
         {{/if}}
         {{#if youtubeEnabled}}
-            {{d-button action=(action "youtubeUpload") id="youtube-upload-btn" class="btn-primary" icon="fab-youtube" label=(theme-prefix 'upload.youtube')}}
+        <DButton
+            @label={{theme-prefix 'upload.youtube'}}
+            @action={{action "youtubeUpload"}}
+            @icon="fab-youtube"
+            @id="youtube-upload-btn"
+        />
         {{/if}}
     </:footer>
 </DModal>
