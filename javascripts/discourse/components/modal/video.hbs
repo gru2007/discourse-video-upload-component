@@ -1,5 +1,4 @@
-<DModal @closeModal={{@closeModal}} @title=(theme-prefix "upload.video") id="video-modal" class="video-modal">
-    <:body>
+<DModal @closeModal={{@closeModal}} @title={{theme-prefix "upload.video"}} id="video-modal" class="video-modal">
         <script async defer src="https://apis.google.com/js/api.js" id="gapiScript"></script>
         <div class="video-details">
             {{input type="file" id="video-file" accept="video/mp4,video/x-m4v,video/*" }}
