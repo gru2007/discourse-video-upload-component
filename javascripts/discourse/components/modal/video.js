@@ -29,13 +29,11 @@ export default class VideoModal extends Component {
     onShow() {
         const component = this;
         setTimeout(() => $("#video-file").change(() => component.validateVideoFile(component)), 1000);
-        component.setProperties({
-            isProcessing: false,
-            processingError: false,
-            uploadError: null,
-            isUploading: false,
-            isAuthing: false
-        });
+        this.isProcessing = false
+        this.processingError = false
+        this.uploadError = null
+        this.isUploading = false
+        this.isAuthing = false
     }
     
     @action
@@ -64,13 +62,11 @@ export default class VideoModal extends Component {
         const file = $("#video-file").prop('files');
         const composer = getOwner(this).lookup("controller:composer");
         const component = this;
-        component.setProperties({
-            isUploading: true,
-            uploadProgress: 0,
-            isProcessing: false,
-            processingError: false,
-            uploadError: null
-        });
+        this.isUploading = true
+        this.uploadProgress = 0
+        this.isProcessing = false
+        this.processingError = false
+        this.uploadError = null
 
         $("#vimeo-upload-btn").attr('disabled', 'disabled');
 
@@ -86,19 +82,15 @@ export default class VideoModal extends Component {
             upgrade_to_1080: true,
             onError: function(data) {
                 console.error('<strong>Error</strong>: ' + JSON.parse(data).error, 'danger')
-                component.setProperties({
-                    uploadProgress: 0,
-                    isUploading: false,
-                    uploadError: JSON.parse(data).error
-                });
+                this.uploadProgress = 0
+                this.isUploading = false
+                this.uploadError = JSON.parse(data).error
             },
             onProgress: data => component.updateProgress(data, component),
             onComplete: function(videoId, index) {
-                component.setProperties({
-                    uploadProgress: 0,
-                    isUploading: false,
-                    isProcessing: true,
-                });
+                this.uploadProgress = 0
+                this.isUploading = false
+                this.isProcessing = true
                 uploadUrl = 'https://vimeo.com/' + videoId;
                 component.vimeoUploadStatus(uploadInst, uploadUrl, composer, component);
             }
@@ -110,14 +102,12 @@ export default class VideoModal extends Component {
     @action
     youtubeUpload() {
         const component = this;
-        component.setProperties({
-            isAuthing: true,
-            isUploading: false,
-            uploadProgress: 0,
-            isProcessing: false,
-            processingError: false,
-            uploadError: null
-        });
+        this.isAuthing = true
+        this.isUploading = false
+        this.uploadProgress = 0
+        this.isProcessing = false
+        this.processingError = false
+        this.uploadError = null
 
         const checkScopeAndUpload = function () {
             const authResponse = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse();
@@ -146,10 +136,8 @@ export default class VideoModal extends Component {
         const file = $("#video-file").prop('files');
         $("#youtube-upload-btn").attr('disabled', 'disabled');
 
-        component.setProperties({
-            isUploading: true,
-            isAuthing: false
-        });
+        this.isUploading = true
+        this.isAuthing = false
 
         const metadata = {
             snippet: {
@@ -178,10 +166,8 @@ export default class VideoModal extends Component {
                     message = errorResponse.error.message;
                 } finally {
                     console.error(message);
-                    component.setProperties({
-                        isUploading: false,
-                        uploadError: message
-                    });
+                    this.isUploading = false
+                    this.uploadError = message
                 }
             }.bind(this),
             onProgress: function(data) { component.updateProgress(data, component) }.bind(this),
@@ -189,11 +175,10 @@ export default class VideoModal extends Component {
                 const uploadResponse = JSON.parse(data);
                 component.ytVideoId = uploadResponse.id;
 
-                component.setProperties({
-                    uploadProgress: 0,
-                    isUploading: false,
-                    isProcessing: true,
-                });
+                this.uploadProgress = 0
+                this.isUploading = false
+                this.isProcessing = true
+
                 $("#youtube-upload-btn").removeAttr('disabled');
                 component.youtubeUploadStatus();
             }.bind(this)
@@ -251,10 +236,8 @@ export default class VideoModal extends Component {
                 }
             }, function (error) {
                 clearInterval(interval);
-                component.setProperties({
-                    isProcessing: false,
-                    processingError: true
-                });
+                this.isProcessing = false
+                this.processingError = true
             })
         }, STATUS_POLLING_INTERVAL_MILLIS);
     }
