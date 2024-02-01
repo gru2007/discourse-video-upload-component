@@ -2,7 +2,6 @@
     <:body>
         <script async defer src="https://apis.google.com/js/api.js" id="gapiScript"></script>
         <div class="video-details">
-            {{input type="file" id="video-file" }}
             <Input
                 @type="file"
                 name="video-file"
@@ -18,7 +17,7 @@
                     <option value="private">{{theme-i18n 'details.scope.private'}}</option>
                 </select>
             {{/if}}
-            <label for="video-title">{{theme-i18n 'details.title'}}</label> {{input type="text" id="video-title" placeholder="Video Title" }}
+            <label for="video-title">{{theme-i18n 'details.title'}}</label>
             <Input
                 @type="text"
                 name="video-title"
