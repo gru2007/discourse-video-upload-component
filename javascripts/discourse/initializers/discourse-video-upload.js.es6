@@ -3,14 +3,13 @@ import showModal from "discourse/lib/show-modal";
 import VideoModal from "../components/modal/video-upload";
 
 function initializeDiscourseVideoUpload(api) {
+
+  const modal = api.container.lookup("service:modal");
   if (settings.youtube_upload_enabled || settings.vimeo_upload_enabled) {
     api.modifyClass("component:d-editor", {
       actions: {
         openVideoUploadModal() {
-          openVideoUploadModal() {
-            const modal = api.container.lookup("service:modal");
-            modal.show(VideoModal);
-          }
+          modal.show(VideoModal);
         }
       }
     });
